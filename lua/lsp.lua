@@ -4,20 +4,20 @@ lsp_installer.setup {}
 local lspconfig = require("lspconfig")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+-- lsp_function_signature config
+local cfg = {
+    hint_enable = false,
+    hint_prefix = "",
+}
+require "lsp_signature".setup(cfg)
+
+
 -- lspconfig.lua_ls.setup {}
 -- lspconfig.sumneko_lua.setup { on_attach = on_attach }
-lspconfig.pyright.setup {
-    cmd = cmd,
-    on_attach = on_attach,
-    capabilities = capabilities
-}
+lspconfig.pyright.setup {}
 lspconfig.tsserver.setup {}
-lspconfig.rust_analyzer.setup {
-  -- Server-specific settings. See `:help lspconfig-setup`
-  settings = {
-    ['rust-analyzer'] = {},
-  },
-}
+lspconfig.rust_analyzer.setup {}
+
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

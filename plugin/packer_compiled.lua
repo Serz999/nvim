@@ -90,15 +90,15 @@ _G.packer_plugins = {
     path = "/home/serz999/.local/share/nvim/site/pack/packer/start/auto-save.nvim",
     url = "https://github.com/Pocco81/auto-save.nvim"
   },
-  ["cmp-buffer"] = {
-    loaded = true,
-    path = "/home/serz999/.local/share/nvim/site/pack/packer/start/cmp-buffer",
-    url = "https://github.com/hrsh7th/cmp-buffer"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/serz999/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lsp-signature-help"] = {
+    loaded = true,
+    path = "/home/serz999/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp-signature-help",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp-signature-help"
   },
   ["cmp-path"] = {
     loaded = true,
@@ -125,6 +125,11 @@ _G.packer_plugins = {
     path = "/home/serz999/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
     url = "https://github.com/ray-x/lsp_signature.nvim"
   },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/serz999/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/serz999/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -140,6 +145,12 @@ _G.packer_plugins = {
     path = "/home/serz999/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-web-devicons"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/serz999/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/serz999/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -149,11 +160,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/serz999/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["stylelint-lsp"] = {
-    loaded = true,
-    path = "/home/serz999/.local/share/nvim/site/pack/packer/start/stylelint-lsp",
-    url = "https://github.com/bmatcuk/stylelint-lsp"
   },
   tagbar = {
     loaded = true,

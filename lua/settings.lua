@@ -8,6 +8,7 @@ g.netrw_liststyle = 3 	      -- Tree instead of plain view
 g.netrw_browse_split = 3      -- Vertical split window when Enter pressed on file
 g.gruvbox_contrast_dark = 'hard'
 g.mapleader = ','
+
 -----------------------------------------------------------
 -- Main
 -----------------------------------------------------------
@@ -46,31 +47,77 @@ cmd([[
 -- Telescope fzf setup
 require('telescope').load_extension('fzf')
 
+require('lualine').setup{}
+
+-- lualine
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'gruvbox',
+    component_separators = { left = '|', right = '|'},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+    }
+  },
+  sections = {
+    lualine_a = {'filename'},
+    lualine_b = {'diagnostics'},
+    lualine_c = {''},
+    lualine_x = {'encoding', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
+
+
 -- luasnip setup
 local luasnip = require 'luasnip'
 local async = require "plenary.async"
 
- -- Set up nvim-cmp.
+
+-- Set up nvim-cmp.
   local cmp = require'cmp'
 
   cmp.setup({
-    completion = {
-        autocomplete = true
-    },
-
-      snippet = {
+    snippet = {
       -- REQUIRED - you must specify a snippet engine
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end,
+			require'luasnip'.lsp_expand(args.body) -- Luasnip expand
+		end,
     },
+
     window = {
       -- completion = cmp.config.window.bordered(),
       -- documentation = cmp.config.window.bordered(),
     },
+
+    completion = {
+        completeopt = 'menu,menuone,noinsert',
+        max_items = 5,
+    },
+
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -78,18 +125,13 @@ local async = require "plenary.async"
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
+
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      -- { name = 'vsnip' }, -- For vsnip users.
-      -- { name = 'ultisnips' }, -- For ultisnips users.
-      -- { name = 'snippy' }, -- For snippy users.
-       { name = 'nvim_lsp' },                -- LSP 👄
-	    { name = 'nvim_lsp_signature_help' }, -- Помощь при введении параметров в методах 🚁
-		{ name = 'luasnip' },                 -- Luasnip 🐌
-		{ name = 'buffer' },                  -- Буфферы 🐃
-		{ name = 'path' },                    -- Пути 🪤
-		{ name = "emoji" },                   -- Эмодзи 😳    
-  }, {
+      { name = 'luasnip' }, -- For luasnip users.
+      { name = 'path' },
+      -- { name = 'nvim_lsp_signature_help' },
+    }, {
       { name = 'buffer' },
     })
   })
@@ -120,4 +162,6 @@ local async = require "plenary.async"
       { name = 'cmdline' }
     })
   })
+
+
 
