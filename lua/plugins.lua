@@ -3,13 +3,12 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer self instalation
     use 'wbthomason/packer.nvim'
- 
+
+
     -- Color schemas
     use 'morhetz/gruvbox'
-
     -- Configurate
     use 'powerman/vim-plugin-ruscmd'
-
     ------------------------------------------ 
     -- IDE tools
     ------------------------------------------
@@ -24,17 +23,32 @@ return require('packer').startup(function(use)
     use {'nvim-telescope/telescope.nvim', tag = '0.1.1', requires = { {'nvim-lua/plenary.nvim'} }}    
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }  
     use 'https://github.com/preservim/tagbar'  
-   
+    -- TreesView
+    use 'nvim-tree/nvim-web-devicons' 
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+        requires = { 'nvim-tree/nvim-web-devicons'}
+    } 
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {'nvim-tree/nvim-web-devicons'}
     }
-
+    -- Buffers managment
+    use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+    -- SyntaxParser
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
     -- LSP
     use 'neovim/nvim-lspconfig' 
     use 'williamboman/nvim-lsp-installer'
     use 'ray-x/lsp_signature.nvim' -- show function signature, when you write args
     -- Autocomplite
+    use 'onsails/lspkind-nvim'
     use {
         'hrsh7th/nvim-cmp',
 		requires = {
@@ -47,3 +61,4 @@ return require('packer').startup(function(use)
 		}
     }
 end)
+
